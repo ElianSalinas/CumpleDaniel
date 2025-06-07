@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Fiesta de Danielillo – Go Karts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #111;
+      color: #fff;
+      padding-top: 50px;
+    }
+    img.logo {
+      max-width: 300px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.5em;
+      color: #ccc;
+      margin-top: 0;
+    }
+    #countdown {
+      font-size: 3em;
+      margin-top: 30px;
+      color: #0f0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Imagen como logo -->
+  <img src="grupoP.jpeg" alt="Fiesta de Danielillo" class="logo">
+
+  <h1>🎉 Fiesta de Danielillo 🎉</h1>
+  <h2>¡Go Karts mañana a las 6:00 p.m.!</h2>
+  <div id="countdown"></div>
+
+  <script>
+    // Obtener la fecha de mañana a las 18:00
+    const now = new Date();
+    const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 18, 0, 0);
+
+    function updateCountdown() {
+      const currentTime = new Date().getTime();
+      const distance = targetDate.getTime() - currentTime;
+
+      if (distance <= 0) {
+        document.getElementById("countdown").innerHTML = "🏁 ¡Es hora de correr! 🏎️";
+        clearInterval(timer);
+        return;
+      }
+
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const timer = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
